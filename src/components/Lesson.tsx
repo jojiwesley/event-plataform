@@ -1,5 +1,6 @@
 import { CheckCircle, Lock } from 'phosphor-react';
 import { format, isPast } from 'date-fns'; 
+import { Link } from 'react-router-dom';
 //atribuindo os tipos de dados TypeScripty
 interface LessonProps {
     title: string;
@@ -15,11 +16,11 @@ export function Lesson(props: LessonProps) {
     // format função que formata a visulisação das datas
     const availableDataFormatted = format(props.avaliableAt, "EEE' • 'd' de 'MMM' • 'k'h'mm")
     return (
-        <a href="#">
+        <Link to={`/Event/lesson/${props.slug}`} className='group'>
             <span className="text-gray-300">
                 {availableDataFormatted}
             </span>
-            <div className="rounded border border-gray-500 p-4 mt-2">
+            <div className="rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500">
                 <header className="flex items-center justify-between">
                     {isLassonAvailable ? (
                         <span className="flex items-center gap-2 text-sm text-blue-500 font-medium">
@@ -40,6 +41,6 @@ export function Lesson(props: LessonProps) {
                     {props.title}
                 </strong>
             </div>
-        </a>
+        </Link>
     )
 }
